@@ -61,9 +61,17 @@ public class ProductionStats {
      * Réfléchissez à la signature du paramètre : doit-elle accepter
      * uniquement une List<Duck>, ou quelque chose de plus général ?
      */
-    public void recordProduction(List<Duck> ducks) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : ProductionStats.recordProduction()");
+    public void recordProduction(Iterable<? extends Duck> ducks) {
+        if (ducks == null) {
+            return;
+        }
+
+        for (Duck duck : ducks) {
+            if (duck == null || duck.getType() == null) {
+                continue;
+            }
+            produced.merge(duck.getType(), 1, Integer::sum);
+        }
     }
 
     /**
@@ -71,8 +79,9 @@ public class ProductionStats {
      * Met à jour sold, totalRevenue et totalOrders.
      */
     public void recordSale(Order order) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : ProductionStats.recordSale()");
+        produced.merge(order.getDuckType(), 1, Integer::sum);
+        totalRevenue += order.getTotalValue();
+        totalOrders++;
     }
 
     /**
@@ -80,8 +89,7 @@ public class ProductionStats {
      * Parcourez produced.values() avec une boucle.
      */
     public int getTotalProduced() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : ProductionStats.getTotalProduced()");
+        return produced.values().stream().mapToInt(Integer::intValue).sum();
     }
 
     /**
@@ -90,7 +98,14 @@ public class ProductionStats {
      * Retourne null si rien n'a encore été produit.
      */
     public DuckType getMostProduced() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : ProductionStats.getMostProduced()");
+        DuckType mostProduced = null;
+        int maxCount = 0;
+        for (Map.Entry<DuckType, Integer> entry : produced.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                mostProduced = entry.getKey();
+                maxCount = entry.getValue();
+            }
+        }
+        return mostProduced;
     }
 }

@@ -152,7 +152,7 @@ public class Factory {
             }
 
             order.fulfill();
-            //TODO: mettre a jour les stats
+            stats.recordSale(order);
             return true;
         } else {
             return false;
@@ -167,7 +167,11 @@ public class Factory {
      * pénalise la réputation de 5 points.
      */
     public void endTurn() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Factory.endTurn()");
+        for (Machine machine : machines) {
+            machine.degrade();
+            if (machine.needsMaintenance()) {
+                this.reputation = Math.max(0, this.reputation - 5);
+            }
+        }
     }
 }

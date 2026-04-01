@@ -37,7 +37,7 @@ public class ConcurrentProductionStats extends ProductionStats {
      * de façon atomique, sans risque de race condition.
      */
     @Override
-    public void recordProduction(List<Duck> ducks) {
+    public void recordProduction(Iterable<? extends Duck> ducks) {
         // TODO
         throw new UnsupportedOperationException("TODO : ConcurrentProductionStats.recordProduction()");
     }
