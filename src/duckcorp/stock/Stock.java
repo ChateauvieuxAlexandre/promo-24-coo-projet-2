@@ -118,4 +118,20 @@ public class Stock<T extends Duck> {
         }
         return result;
     }
+
+    /**
+     * Retourne une nouvelle instance de stock contenant les canards triés
+     * par score de qualité croissant.
+     *
+     * @return un stock trié par qualité, du plus faible au plus élevé
+     */
+    public Stock getStockOrderByQuality() {
+        List<Duck> ducks = new ArrayList<>(this.items);
+        ducks.sort((d1, d2) -> Integer.compare(d1.getQualityScore(), d2.getQualityScore()));
+        Stock stock = new Stock();
+        for (Duck duck : ducks) {
+            stock.add(duck);
+        }
+        return stock;
+    }
 }

@@ -123,7 +123,6 @@ public class Factory {
         return ducks;
     }
 
-
     /**
      * Tente d'honorer une commande.
      * Si le stock est suffisant :
@@ -140,7 +139,8 @@ public class Factory {
      */
     public boolean fulfillOrder(Order order) {
         if (order.canBeFulfilled(stock)) {
-            List<Duck> ducks = stock.remove(order.getDuckType(), order.getQuantity());
+
+            List<Duck> ducks = stock.getStockOrderByQuality().remove(order.getDuckType(), order.getQuantity());
             double totalValue = order.getTotalValue();
             this.budget += totalValue;
 
