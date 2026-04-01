@@ -14,7 +14,7 @@ import java.util.Random;
  *   - Implémentez produceDuck(), getPurchaseCost(), getName() dans les sous-classes
  * @author Roussille Philippe <roussille@3il.fr>
  */
-public abstract class Machine {
+public abstract class Machine implements Maintainable {
 
     private static final Random RANDOM = new Random();
 
@@ -45,7 +45,6 @@ public abstract class Machine {
     public int getCondition() { return condition; }
 
     // --- TODO : maintain() ---
-
     /**
      * Effectue une maintenance : augmente condition de 40 points, plafonnée à 100.
      * TODO (Ex2) : implémentez cette méthode.
