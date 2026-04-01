@@ -16,11 +16,10 @@ public class LuxuryDuck extends Duck {
     /**
      * Constructeur fourni. Génère automatiquement un identifiant unique.
      *
-     * @param type
      * @param qualityScore
      */
-    protected LuxuryDuck(DuckType type, int qualityScore) {
-        super(type, qualityScore);
+    public LuxuryDuck(int qualityScore) {
+        super(DuckType.LUXURY, qualityScore);
     }
 
     @Override

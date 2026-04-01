@@ -16,11 +16,10 @@ public class MiniDuck extends Duck {
     /**
      * Constructeur fourni. Génère automatiquement un identifiant unique.
      *
-     * @param type
      * @param qualityScore
      */
-    protected MiniDuck(DuckType type, int qualityScore) {
-        super(type, qualityScore);
+    public MiniDuck(int qualityScore) {
+        super(DuckType.MINI, qualityScore);
     }
 
 

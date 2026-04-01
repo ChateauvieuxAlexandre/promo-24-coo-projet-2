@@ -2,6 +2,7 @@ package duckcorp.machine;
 
 import duckcorp.duck.Duck;
 import duckcorp.duck.DuckType;
+import duckcorp.duck.LuxuryDuck;
 
 /**
  * Moule produisant des Canards de Luxe.
@@ -18,29 +19,22 @@ public class LuxuryMold extends Machine{
     public static final int CAPACITY         = 2;
     public static final int MAINTENANCE_COST = 80;
 
-    /**
-     * Constructeur fourni.
-     *
-     * @param producedType
-     * @param capacity
-     * @param maintenanceCost
-     */
-    protected LuxuryMold(DuckType producedType, int capacity, int maintenanceCost) {
-        super(producedType, capacity, maintenanceCost);
+    public LuxuryMold() {
+        super(DuckType.LUXURY, CAPACITY, MAINTENANCE_COST);
     }
 
     @Override
     public Duck produceDuck() {
-        return null;
+        return new LuxuryDuck(computeQuality());
     }
 
     @Override
     public int getPurchaseCost() {
-        return 0;
+        return PURCHASE_COST;
     }
 
     @Override
     public String getName() {
-        return "";
+        return "Presse de Luxe";
     }
 }

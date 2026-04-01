@@ -2,6 +2,7 @@ package duckcorp.machine;
 
 import duckcorp.duck.Duck;
 import duckcorp.duck.DuckType;
+import duckcorp.duck.StandardDuck;
 
 /**
  * Presse produisant des canards Standard.
@@ -18,29 +19,23 @@ public class StandardPress extends Machine{
     public static final int CAPACITY         = 5;
     public static final int MAINTENANCE_COST = 50;
 
-    /**
-     * Constructeur fourni.
-     *
-     * @param producedType
-     * @param capacity
-     * @param maintenanceCost
-     */
-    protected StandardPress(DuckType producedType, int capacity, int maintenanceCost) {
-        super(producedType, capacity, maintenanceCost);
+
+    protected StandardPress() {
+        super(DuckType.STANDARD, CAPACITY, MAINTENANCE_COST);
     }
 
     @Override
     public Duck produceDuck() {
-        return null;
+        return new StandardDuck(computeQuality());
     }
 
     @Override
     public int getPurchaseCost() {
-        return 0;
+        return PURCHASE_COST;
     }
 
     @Override
     public String getName() {
-        return "";
+        return "Presse Standard";
     }
 }

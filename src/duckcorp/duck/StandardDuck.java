@@ -16,11 +16,10 @@ public class StandardDuck extends Duck {
     /**
      * Constructeur fourni. Génère automatiquement un identifiant unique.
      *
-     * @param type
      * @param qualityScore
      */
-    protected StandardDuck(DuckType type, int qualityScore) {
-        super(type, qualityScore);
+    public StandardDuck(int qualityScore) {
+        super(DuckType.STANDARD, qualityScore);
     }
 
     @Override
