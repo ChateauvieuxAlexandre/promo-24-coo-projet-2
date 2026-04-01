@@ -20,7 +20,7 @@ public class MiniPress extends Machine {
     public static final int MAINTENANCE_COST = 30;
 
 
-    protected MiniPress() {
+    public MiniPress() {
         super(DuckType.MINI, CAPACITY, MAINTENANCE_COST);
     }
 

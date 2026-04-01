@@ -55,8 +55,18 @@ public class Stock<T extends Duck> {
      * Attention à la signature de retour : elle doit conserver le type générique T.
      */
     public List<T> remove(DuckType type, int count) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.remove()");
+        List<T> result = new ArrayList<>();
+        for (T item : items) {
+            if (count == 0) {
+                return result;
+            }
+            if (item.getType().equals(type)) {
+                result.add(item);
+                items.remove(item);
+                count --;
+            }
+        }
+        throw new IllegalStateException("Stock insuffisant : demandé " + count + " canards de type " + type);
     }
 
     /**
@@ -65,8 +75,13 @@ public class Stock<T extends Duck> {
      * @param type le type à compter
      */
     public int count(DuckType type) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.count()");
+        int count = 0;
+        for (T item : items) {
+            if (item.getType().equals(type)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -76,8 +91,13 @@ public class Stock<T extends Duck> {
      * Conseil : appelez isDefective() plutôt que de comparer le score manuellement.
      */
     public int countDefective() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.countDefective()");
+        int count = 0;
+        for (T item : items) {
+            if (item.isDefective()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -88,7 +108,14 @@ public class Stock<T extends Duck> {
      * Tous les types doivent apparaître dans la map (avec 0 si absent).
      */
     public Map<DuckType, Integer> countByType() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : Stock.countByType()");
+        Map<DuckType, Integer> result = new java.util.HashMap<>();
+        for (DuckType type : DuckType.values()) {
+            result.put(type, 0);
+        }
+        for (T item : items) {
+            DuckType type = item.getType();
+            result.put(type, result.get(type) + 1);
+        }
+        return result;
     }
 }

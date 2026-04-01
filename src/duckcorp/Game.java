@@ -121,6 +121,11 @@ public class Game {
      *   1 -> StandardPress  /  2 -> MiniPress  /  3 -> LuxuryMold
      */
     private Machine createMachine(int choice) {
-        throw new UnsupportedOperationException("TODO : Game.createMachine()");
+        switch (choice) {
+            case 1: return new duckcorp.machine.StandardPress();
+            case 2: return new duckcorp.machine.MiniPress();
+            case 3: return new duckcorp.machine.LuxuryMold();
+            default: throw new IllegalArgumentException("Invalid machine choice: " + choice);
+        }
     }
 }

@@ -20,7 +20,7 @@ public class StandardPress extends Machine{
     public static final int MAINTENANCE_COST = 50;
 
 
-    protected StandardPress() {
+    public StandardPress() {
         super(DuckType.STANDARD, CAPACITY, MAINTENANCE_COST);
     }
 
