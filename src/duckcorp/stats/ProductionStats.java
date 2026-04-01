@@ -79,7 +79,7 @@ public class ProductionStats {
      * Met à jour sold, totalRevenue et totalOrders.
      */
     public void recordSale(Order order) {
-        produced.merge(order.getDuckType(), 1, Integer::sum);
+        sold.merge(order.getDuckType(), 1, Integer::sum);
         totalRevenue += order.getTotalValue();
         totalOrders++;
     }

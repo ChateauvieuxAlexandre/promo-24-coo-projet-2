@@ -29,8 +29,14 @@ public class OrderBook {
      * En cas d'égalité de délai, garantissez un ordre stable et reproductible.
      */
     public void addOrder(Order order) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : OrderBook.addOrder()");
+        orders.add(order);
+        Collections.sort(orders, (o1, o2) -> {
+            int byTurns = Integer.compare(o1.getTurnsRemaining(), o2.getTurnsRemaining());
+            if (byTurns != 0) {
+                return byTurns;
+            }
+            return o1.getId().compareTo(o2.getId());
+        });
     }
 
     /**

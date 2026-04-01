@@ -116,10 +116,14 @@ public class Factory {
     public List<Duck> runProduction() {
         List<Duck> ducks = new ArrayList<>();
         for (Machine machine : machines) {
-            Duck duck = machine.produceDuck();
-            stock.add(duck);
-            ducks.add(duck);
+            for (int i = 0; i < machine.getCapacity(); i++) {
+                Duck duck = machine.produceDuck();
+                stock.add(duck);
+                ducks.add(duck);
+
+            }
         }
+        stats.recordProduction(ducks);
         return ducks;
     }
 
@@ -140,7 +144,8 @@ public class Factory {
     public boolean fulfillOrder(Order order) {
         if (order.canBeFulfilled(stock)) {
 
-            List<Duck> ducks = stock.getStockOrderByQuality().remove(order.getDuckType(), order.getQuantity());
+            //List<Duck> ducks = stock.getStockOrderByQuality().remove(order.getDuckType(), order.getQuantity());
+            List<Duck> ducks = stock.remove(order.getDuckType(), order.getQuantity());
             double totalValue = order.getTotalValue();
             this.budget += totalValue;
 

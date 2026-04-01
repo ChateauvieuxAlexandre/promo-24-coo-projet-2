@@ -1,5 +1,6 @@
 package duckcorp.stock;
 
+import duckcorp.bonus.DuckComparator;
 import duckcorp.duck.Duck;
 import duckcorp.duck.DuckType;
 
@@ -55,18 +56,27 @@ public class Stock<T extends Duck> {
      * Attention à la signature de retour : elle doit conserver le type générique T.
      */
     public List<T> remove(DuckType type, int count) {
-        List<T> result = new ArrayList<>();
+        List<T> candidates = new ArrayList<>();
         for (T item : items) {
-            if (count == 0) {
-                return result;
-            }
             if (item.getType().equals(type)) {
-                result.add(item);
-                items.remove(item);
-                count --;
+                candidates.add(item);
             }
         }
-        throw new IllegalStateException("Stock insuffisant : demandé " + count + " canards de type " + type);
+
+        if (candidates.size() < count) {
+            throw new IllegalStateException("Stock insuffisant : demandé " + count + " canards de type " + type);
+        }
+
+        candidates.sort(new DuckComparator());
+
+        List<T> result = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            T duck = candidates.get(i);
+            result.add(duck);
+            items.remove(duck);
+        }
+
+        return result;
     }
 
     /**
@@ -127,7 +137,8 @@ public class Stock<T extends Duck> {
      */
     public Stock getStockOrderByQuality() {
         List<Duck> ducks = new ArrayList<>(this.items);
-        ducks.sort((d1, d2) -> Integer.compare(d1.getQualityScore(), d2.getQualityScore()));
+        //ducks.sort((d1, d2) -> Integer.compare(d1.getQualityScore(), d2.getQualityScore()));
+        ducks.sort(new DuckComparator());
         Stock stock = new Stock();
         for (Duck duck : ducks) {
             stock.add(duck);

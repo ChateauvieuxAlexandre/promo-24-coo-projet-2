@@ -25,7 +25,6 @@ public class DuckComparator implements Comparator<Duck> {
      */
     @Override
     public int compare(Duck a, Duck b) {
-        // TODO
-        throw new UnsupportedOperationException("TODO : DuckComparator.compare()");
+        return Integer.compare(a.getQualityScore(), b.getQualityScore());
     }
 }
