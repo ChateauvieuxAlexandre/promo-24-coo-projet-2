@@ -46,8 +46,13 @@ public class OrderBook {
      * TODO : parcourez orders, ne retournez que celles avec status PENDING.
      */
     public List<Order> getPendingOrders() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : OrderBook.getPendingOrders()");
+        List<Order> pendingOrders = new ArrayList<>();
+        for (Order order : orders) {
+            if (order.getStatus() == OrderStatus.PENDING) {
+                pendingOrders.add(order);
+            }
+        }
+        return pendingOrders;
     }
 
     /**
@@ -57,8 +62,8 @@ public class OrderBook {
      * TODO : utilisez getPendingOrders() et retournez le premier élément.
      */
     public Order getMostUrgent() {
-        // TODO
-        throw new UnsupportedOperationException("TODO : OrderBook.getMostUrgent()");
+        List<Order> pendingOrders = getPendingOrders();
+        return pendingOrders.isEmpty() ? null : pendingOrders.get(0);
     }
 
     /** Retourne toutes les commandes (fourni). */
