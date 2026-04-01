@@ -9,7 +9,7 @@ package duckcorp.duck;
  *   - Implémentez les méthodes abstraites dans les sous-classes
  * @author Roussille Philippe <roussille@3il.fr>
  */
-public abstract class Duck {
+public abstract class Duck implements Qualifiable {
 
     private static int counter = 0;
 
@@ -43,13 +43,13 @@ public abstract class Duck {
      */
     @Override
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException("TODO : Duck.equals()");
+        return (this.id == ((Duck) o).id);
     }
 
     /** TODO : implémentez hashCode() de façon cohérente avec equals(). */
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("TODO : Duck.hashCode()");
+        return this.id.hashCode();
     }
 
     // --- toString fourni ---

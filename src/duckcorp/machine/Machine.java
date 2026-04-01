@@ -51,7 +51,7 @@ public abstract class Machine {
      * TODO (Ex2) : implémentez cette méthode.
      */
     public void maintain() {
-        throw new UnsupportedOperationException("TODO : Machine.maintain()");
+        condition = Math.min(100, condition + 40);
     }
 
     // --- Méthodes fournies ---

@@ -17,7 +17,7 @@ public interface Qualifiable {
      * TODO : implémentez cette méthode default en vous appuyant sur getQualityScore().
      */
     default boolean isDefective() {
-        throw new UnsupportedOperationException("TODO : Qualifiable.isDefective()");
+        return (this.getQualityScore() < 20);
     }
 
     /**
@@ -26,6 +26,15 @@ public interface Qualifiable {
      * TODO : implémentez cette méthode default.
      */
     default String getQualityLabel() {
-        throw new UnsupportedOperationException("TODO : Qualifiable.getQualityLabel()");
+        int score = this.getQualityScore();
+        if (score >= 80) {
+            return "Excellent";
+        } else if (score >= 50) {
+            return "Bon";
+        } else if (score >= 20) {
+            return "Médiocre";
+        } else {
+            return "Défectueux";
+        }
     }
 }

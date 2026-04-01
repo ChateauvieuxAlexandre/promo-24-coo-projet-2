@@ -9,7 +9,29 @@ package duckcorp.duck;
  *   - Implémentez getBasePrice() et describe()
  * @author Roussille Philippe <roussille@3il.fr>
  */
-public class StandardDuck {
+public class StandardDuck extends Duck {
 
     public static final double BASE_PRICE = 25.0;
+
+    /**
+     * Constructeur fourni. Génère automatiquement un identifiant unique.
+     *
+     * @param type
+     * @param qualityScore
+     */
+    protected StandardDuck(DuckType type, int qualityScore) {
+        super(type, qualityScore);
+    }
+
+    @Override
+    public double getBasePrice() {
+        return BASE_PRICE;
+    }
+
+    @Override
+    public String describe() {
+        return "Canard Standard";
+    }
+
+
 }
